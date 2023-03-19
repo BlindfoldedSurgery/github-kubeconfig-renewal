@@ -1,0 +1,31 @@
+namespace: telegram-bots
+
+secret:
+  name: github-tokens
+  tokens:
+    openAlcoholics: __GITHUB_TOKEN_OPENALCOHOLICS__
+
+cronjob:
+  name: renew-kubeconfig-github-secrets
+  image: ghcr.io/preparingforexams/github-kubeconfig-renewal:__TAG__
+  schedule: "0 0 * * *"
+  backoffLimit: 0
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  restartPolicy: Never
+  labels:
+    app: renew-kubeconfig-github-secrets
+  requests:
+    cpu: 100m
+    memory: 100Mi
+  limit:
+    cpu: 300m
+    memory: 300Mi
+
+rbac:
+  clusterrole:
+    name: read:serviceaccounts
+  clusterrolebinding:
+    name: read:serviceaccounts
+  serviceaccount:
+    name: github-kubeconfig-renewal
