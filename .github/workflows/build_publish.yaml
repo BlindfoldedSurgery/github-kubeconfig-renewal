@@ -39,7 +39,7 @@ jobs:
     needs: [ lint, build_push_docker ]
     steps:
       - uses: actions/checkout@v3
-      - run: sed -i -e "s/__GITHUB_TOKEN_OPENALCOHOLICS__/${{ secrets.GITHUB_TOKEN_OPENALCOHOLICS }}/g" values.yaml
+      - run: sed -i -e "s/__GITHUB_TOKEN_OPENALCOHOLICS__/${{ secrets.OPENALCOHOLICS_TOKEN_GITHUB }}/g" values.yaml
       - run: sed -i -e "s/__TAG__/${GITHUB_SHA}/g" values.yaml
       - name: install helm chart
         uses: OpenAlcoholics/github-action-helm@v0.1.3
