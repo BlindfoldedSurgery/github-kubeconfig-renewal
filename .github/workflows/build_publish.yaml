@@ -29,9 +29,9 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the tagged Docker image
-        run: docker build -t ghcr.io/OpenAlcoholics/github-kubeconfig-renewal:${GITHUB_SHA} .
+        run: docker build -t ghcr.io/openalcoholics/github-kubeconfig-renewal:${GITHUB_SHA} .
       - name: Push the tagged Docker image
-        run: docker push ghcr.io/OpenAlcoholics/github-kubeconfig-renewal:${GITHUB_SHA}
+        run: docker push ghcr.io/openalcoholics/github-kubeconfig-renewal:${GITHUB_SHA}
 
   deploy:
     name: "Publish to k8s"

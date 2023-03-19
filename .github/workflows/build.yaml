@@ -24,4 +24,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the tagged Docker image
-        run: docker build -t ghcr.io/OpenAlcoholics/github-kubeconfig-renewal:${GITHUB_SHA} .
+        run: docker build -t ghcr.io/openalcoholics/github-kubeconfig-renewal:${GITHUB_SHA} .
