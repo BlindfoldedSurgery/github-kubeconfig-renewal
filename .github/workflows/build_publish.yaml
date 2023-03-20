@@ -47,7 +47,7 @@ jobs:
           subcommand: upgrade
           release_name: github-kubeconfig-renewal
           ref: .
-          release_namespace: mgmt
+          namespace: mgmt
           install: true
           atomic: true
           kubeconfig: ${{ secrets.KUBECONFIG_RAW }}
