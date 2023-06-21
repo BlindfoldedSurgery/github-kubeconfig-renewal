@@ -4,7 +4,12 @@ from typing import Dict
 from kubernetes import client, config
 from kubernetes.client import V1Secret, V1SecretList
 
-config.load_kube_config()
+try:
+    config.load_incluster_config()
+except config.config_exception.ConfigException:
+    config.load_kube_config()
+
+
 api = client.CoreV1Api()
 
 
