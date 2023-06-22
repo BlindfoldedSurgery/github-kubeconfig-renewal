@@ -9,8 +9,21 @@ ORGANIZATIONS = [
                     "name": "postgresoperator-github",
                     "namespace": "postgres-operator",
                 }
-            }
+            },
         ],
+    },
+    {
+        "name": "torbencarstens",
+        "token_environment_variable_name": "GITHUB_TOKEN_TORBENCARSTENS",
+        "repos": [
+            {
+                "name": "container-workshop",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "static",
+                }
+            },
+        ]
     },
 ]
 
