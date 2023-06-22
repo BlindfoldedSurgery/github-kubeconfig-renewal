@@ -1,6 +1,7 @@
 import os
 from typing import Dict
 
+import github
 import yaml
 from github import Github
 
@@ -37,7 +38,11 @@ def update_github_secrets():
         access_token = os.getenv(organization["token_environment_variable_name"])
         github_api = Github(access_token)
 
-        github_organization = github_api.get_organization(organization["name"])
+        try:
+            github_organization = github_api.get_organization(organization["name"])
+        except github.GithubException:
+            # fake it til you make it
+            github_organization = github_api.get_user(organization["name"])
         if organization.get("serviceaccount"):
             create_organization_secret(github_organization, organization)
 
