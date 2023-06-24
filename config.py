@@ -24,6 +24,27 @@ ORGANIZATIONS = [
                     "namespace": "action-example",
                 }
             },
+            {
+                "name": "regular_dicers_bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "action-example",
+                }
+            },
+            {
+                "name": "saufautomat",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "openalcoholics",
+                }
+            },
+            {
+                "name": "song.abfahrt.io",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "abfahrt",
+                }
+            },
         ],
     },
     {
