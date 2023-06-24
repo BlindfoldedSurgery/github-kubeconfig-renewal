@@ -12,7 +12,7 @@ secret:
 cronjob:
   name: renew-kubeconfig-github-secrets
   image: ghcr.io/openalcoholics/github-kubeconfig-renewal:__TAG__
-  schedule: "0 0 * * *"
+  schedule: "0 * * * *"
   backoffLimit: 0
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
