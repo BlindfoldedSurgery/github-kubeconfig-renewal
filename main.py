@@ -1,6 +1,7 @@
 import inspect
 import os
 import sys
+from functools import lru_cache
 from typing import Dict, Union
 
 import github
@@ -11,6 +12,7 @@ import config
 from src import create_logger, kube, kubeconfig, UnknownServiceaccountToken
 
 
+@lru_cache()
 def get_kubeconfig_for_serviceaccount(name: str, namespace: str) -> str:
     serviceaccount = kube.find_serviceaccount_token(name, namespace)
     if not serviceaccount:
