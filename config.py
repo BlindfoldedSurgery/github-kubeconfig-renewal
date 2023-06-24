@@ -185,7 +185,172 @@ ORGANIZATIONS = [
             },
         ]
     },
-
+    {
+        "name": "tim-hat-die-hand-an-der-maus",
+        "token_environment_variable_name": "GITHUB_TOKEN_TIMHATDIEHANDANDERMAUS",
+        "repos": [
+            {
+                "name": "imdb-resolver",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "streamingprovider-resolver",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "telegram-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "preliminarier-frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "plex-request",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "plex-resolver",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "plex-library-update-notifier",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "bus-frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "preliminary-frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "api",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+            {
+                "name": "metadata-updater",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
+        ]
+    },
+    {
+        "name": "woog-life",
+        "token_environment_variable_name": "GITHUB_TOKEN_WOOGLIFE",
+        "repos": [
+            {
+                "name": "api",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "telegram-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "preliminary-frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "data",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "telegram-updater",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "scrapers",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "tweeter",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "k8s-config",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "vpkg-registry",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+            {
+                "name": "graphing",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
+        ]
+    },
 ]
 
 KUBECONFIG_SECRET_NAME = "KUBECONFIG_RAW"

@@ -6,6 +6,8 @@ secret:
     openAlcoholics: __GITHUB_TOKEN_OPENALCOHOLICS__
     torbenCarstens: __GITHUB_TOKEN_TORBENCARSTENS__
     preparingForExams: __GITHUB_TOKEN_PREPARINGFOREXAMS__
+    timHatDieHandAnDerMaus: __GITHUB_TOKEN_TIMHATDIEHANDANDERMAUS__
+    woogLife: __GITHUB_TOKEN_WOOGLIFE__
 
 cronjob:
   name: renew-kubeconfig-github-secrets
