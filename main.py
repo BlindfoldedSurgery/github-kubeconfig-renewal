@@ -52,8 +52,8 @@ def update_github_secrets() -> bool:
         for repo in organization.get("repos", []):
             try:
                 github_repo = github_organization.get_repo(repo["name"])
-            except github.GithubException:
-                print(f"{repo} doesn't exist")
+            except github.GithubException as e:
+                print(f"couldn't retrieve repo {repo} due to {e}")
                 success = False
                 continue
             try:
