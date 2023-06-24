@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import Dict
 
 import github
@@ -26,10 +27,12 @@ def create_organization_secret(github_organization, organization: Dict) -> bool:
 def create_repository_secret(github_repo, repo: Dict) -> bool:
     secret_value = get_kubeconfig_for_serviceaccount(repo["serviceaccount"]["name"],
                                                      repo["serviceaccount"]["namespace"])
+
     return github_repo.create_secret(config.KUBECONFIG_SECRET_NAME, secret_value)
 
 
-def update_github_secrets():
+def update_github_secrets() -> bool:
+    success = True
     for organization in config.ORGANIZATIONS:
         # don't access GitHub api if not necessary
         if not organization.get("repos") and not organization.get("serviceaccount"):
@@ -48,8 +51,19 @@ def update_github_secrets():
 
         for repo in organization.get("repos", []):
             github_repo = github_organization.get_repo(repo["name"])
-            create_repository_secret(github_repo, repo)
+            try:
+                if create_repository_secret(github_repo, repo):
+                    print(f"Successfully created secret for {repo}")
+                else:
+                    print(f"Failed to created secret for {repo}")
+                    success = False
+            except github.GithubException as e:
+                print(f"Failed to update secret for {repo} due to: {e}")
+                success = False
+
+    return success
 
 
 if __name__ == "__main__":
-    update_github_secrets()
+    if not update_github_secrets():
+        sys.exit(1)
