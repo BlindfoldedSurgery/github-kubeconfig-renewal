@@ -50,7 +50,12 @@ def update_github_secrets() -> bool:
             github_organization = github_api.get_user(organization["name"])
 
         for repo in organization.get("repos", []):
-            github_repo = github_organization.get_repo(repo["name"])
+            try:
+                github_repo = github_organization.get_repo(repo["name"])
+            except github.GithubException:
+                print(f"{repo} doesn't exist")
+                success = False
+                continue
             try:
                 if create_repository_secret(github_repo, repo):
                     print(f"Successfully created secret for {repo}")
