@@ -121,7 +121,7 @@ ORGANIZATIONS = [
                 }
             },
             {
-                "name": "kw-bot",
+                "name": "kwbot",
                 "serviceaccount": {
                     "name": "github",
                     "namespace": "telegram-bots",
