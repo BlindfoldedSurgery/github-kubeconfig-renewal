@@ -43,11 +43,11 @@ def update_github_secrets() -> bool:
 
         try:
             github_organization = github_api.get_organization(organization["name"])
+            if organization.get("serviceaccount"):
+                create_organization_secret(github_organization, organization)
         except github.GithubException:
             # fake it til you make it
             github_organization = github_api.get_user(organization["name"])
-        if organization.get("serviceaccount"):
-            create_organization_secret(github_organization, organization)
 
         for repo in organization.get("repos", []):
             github_repo = github_organization.get_repo(repo["name"])
