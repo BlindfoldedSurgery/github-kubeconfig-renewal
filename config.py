@@ -25,6 +25,20 @@ ORGANIZATIONS = [
             },
         ]
     },
+    {
+        "name": "preparingforexams",
+        "token_environment_variable_name": "GITHUB_TOKEN_PREPARINGFOREXAMS",
+        "repos": [
+            {
+                "name": "telegram-horoscope-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "telegram-bots",
+                }
+            },
+        ]
+    },
+
 ]
 
 KUBECONFIG_SECRET_NAME = "KUBECONFIG_RAW"
