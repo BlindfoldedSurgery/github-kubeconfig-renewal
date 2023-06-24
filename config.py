@@ -17,6 +17,13 @@ ORGANIZATIONS = [
                     "namespace": "mgmt",
                 }
             },
+            {
+                "name": "github-action-helm",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "action-example",
+                }
+            },
         ],
     },
     {
