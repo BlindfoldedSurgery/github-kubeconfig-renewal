@@ -22,6 +22,9 @@ spec:
           containers:
             - name: {{ .Values.cronjob.name }}
               image: {{ .Values.cronjob.image }}
+              env:
+                - name: PYTHONUNBUFFERED
+                  value: "1"
               envFrom:
                 - secretRef:
                     name: {{ .Values.secret.name }}
