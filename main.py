@@ -4,7 +4,7 @@ from typing import Dict
 
 import github
 import yaml
-from github import Github
+from github import Auth, Github
 
 import config
 from src import kube, kubeconfig
@@ -39,7 +39,10 @@ def update_github_secrets() -> bool:
             continue
 
         access_token = os.getenv(organization["token_environment_variable_name"])
-        github_api = Github(access_token)
+        if not access_token:
+            raise Exception(f"empty access_token for {organization}")
+        auth = Auth.Token(access_token)
+        github_api = Github(auth=auth)
 
         try:
             github_organization = github_api.get_organization(organization["name"])
