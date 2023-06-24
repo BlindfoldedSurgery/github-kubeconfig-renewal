@@ -10,6 +10,13 @@ ORGANIZATIONS = [
                     "namespace": "postgres-operator",
                 }
             },
+            {
+                "name": "github-kubeconfig-renewal",
+                "serviceaccount": {
+                    "name": "github-config-renewal",
+                    "namespace": "mgmt",
+                }
+            },
         ],
     },
     {
