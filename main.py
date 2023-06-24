@@ -57,11 +57,7 @@ def update_github_secrets() -> bool:
                 success = False
                 continue
             try:
-                if create_repository_secret(github_repo, repo):
-                    print(f"Successfully created secret for {repo}")
-                else:
-                    print(f"Failed to created secret for {repo}")
-                    success = False
+                create_repository_secret(github_repo, repo)
             except github.GithubException as e:
                 print(f"Failed to update secret for {repo} due to: {e}")
                 success = False
