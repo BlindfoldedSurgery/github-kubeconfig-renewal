@@ -65,6 +65,13 @@ ORGANIZATIONS = [
                     "namespace": "mgmt",
                 }
             },
+            {
+                "name": "bern-frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "abfahrt",
+                }
+            },
 
         ]
     },
