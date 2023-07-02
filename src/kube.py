@@ -1,8 +1,11 @@
 import base64
-from typing import Dict
+import inspect
+from typing import Dict, Optional
 
 from kubernetes import client, config
 from kubernetes.client import V1Secret, V1SecretList
+
+from src import create_logger
 
 try:
     config.load_incluster_config()
@@ -13,10 +16,16 @@ except config.config_exception.ConfigException:
 api = client.CoreV1Api()
 
 
-def find_serviceaccount_token(name: str, namespace: str) -> Dict[str, str]:
+def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, str]]:
+    logger = create_logger(inspect.currentframe().f_code.co_name)
     secret_list: V1SecretList = api.list_namespaced_secret(namespace)
     for secret in secret_list.items:
-        serviceaccount_name = secret.metadata.annotations.get("kubernetes.io/service-account.name")
+        try:
+            serviceaccount_name = secret.metadata.annotations.get("kubernetes.io/service-account.name")
+        except AttributeError:
+            logger.error(f"failed to retrieve 'kubernetes.io/service-account.name from '{secret}'", exc_info=True)
+            return None
+
         if serviceaccount_name == name:
             break
     else:
