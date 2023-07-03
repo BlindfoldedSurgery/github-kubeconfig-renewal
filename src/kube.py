@@ -19,7 +19,7 @@ api = client.CoreV1Api()
 def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, str]]:
     secret_list: V1SecretList = api.list_namespaced_secret(namespace)
     for secret in secret_list.items:
-        if secret.metadata.type != "kubernetes.io/service-account-token":
+        if secret.type != "kubernetes.io/service-account-token":
             continue
 
         serviceaccount_name = secret.metadata.annotations.get("kubernetes.io/service-account.name")
