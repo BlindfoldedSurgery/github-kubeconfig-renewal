@@ -17,7 +17,6 @@ api = client.CoreV1Api()
 
 
 def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, str]]:
-    logger = create_logger(inspect.currentframe().f_code.co_name)
     secret_list: V1SecretList = api.list_namespaced_secret(namespace)
     for secret in secret_list.items:
         if secret.metadata.type != "kubernetes.io/service-account-token":
