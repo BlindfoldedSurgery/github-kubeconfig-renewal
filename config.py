@@ -72,7 +72,13 @@ ORGANIZATIONS = [
                     "namespace": "abfahrt",
                 }
             },
-
+            {
+                "name": "friedhof.party",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "static",
+                }
+            },
         ]
     },
     {
