@@ -20,12 +20,10 @@ def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, s
     logger = create_logger(inspect.currentframe().f_code.co_name)
     secret_list: V1SecretList = api.list_namespaced_secret(namespace)
     for secret in secret_list.items:
-        try:
-            serviceaccount_name = secret.metadata.annotations.get("kubernetes.io/service-account.name")
-        except AttributeError:
-            logger.error(f"failed to retrieve 'kubernetes.io/service-account.name from '{secret}'", exc_info=True)
-            return None
+        if secret.metadata.type != "kubernetes.io/service-account-token":
+            continue
 
+        serviceaccount_name = secret.metadata.annotations.get("kubernetes.io/service-account.name")
         if serviceaccount_name == name:
             break
     else:
