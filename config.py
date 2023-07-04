@@ -79,6 +79,13 @@ ORGANIZATIONS = [
                     "namespace": "static",
                 }
             },
+            {
+                "name": "k8s-static-files",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "static",
+                }
+            },
         ]
     },
     {
