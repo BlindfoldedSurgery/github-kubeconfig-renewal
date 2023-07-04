@@ -28,14 +28,13 @@ def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, s
     else:
         raise ValueError(f"couldn't find secret for serviceaccount `{name}` in `{namespace}`")
 
-    return get_serviceaccount_info_from_secret(secret.metadata.name, secret.metadata.namespace)
+    return get_serviceaccount_info_from_secret(secret)
 
 
-def get_serviceaccount_info_from_secret(name: str, namespace: str) -> Dict[str, str]:
-    secret: V1Secret = api.read_namespaced_secret(name, namespace)
-
+def get_serviceaccount_info_from_secret(secret: V1Secret) -> Dict[str, str]:
     token = base64.b64decode(secret.data["token"]).decode("utf-8")
     namespace = base64.b64decode(secret.data["namespace"]).decode("utf-8")
+
     return {
         "token": token,
         "ca.crt": secret.data["ca.crt"],
