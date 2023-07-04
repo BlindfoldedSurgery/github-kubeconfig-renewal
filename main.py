@@ -28,7 +28,7 @@ def create_secret(github_entity: Union[Organization, Repository], entity_config:
     secret_value = get_kubeconfig_for_serviceaccount(entity_config["serviceaccount"]["name"],
                                                      entity_config["serviceaccount"]["namespace"])
 
-    return github_entity.create_secret(config.KUBECONFIG_SECRET_NAME, secret_value)
+    github_entity.create_secret(config.KUBECONFIG_SECRET_NAME, secret_value)
 
 
 def update_github_secrets() -> bool:
