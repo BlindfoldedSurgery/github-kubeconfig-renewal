@@ -63,10 +63,6 @@ def update_github_secrets() -> bool:
                 logger.error(f"failed to retrieve github user for {organization}", exc_info=True)
                 success = False
                 continue
-            except UnknownServiceaccountToken:
-                logger.error(f"failed to retrieve serviceaccount token for {organization} (user)", exc_info=True)
-                success = False
-                continue
         except UnknownServiceaccountToken:
             logger.error(f"failed to retrieve serviceaccount token for {organization}", exc_info=True)
             success = False
