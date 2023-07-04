@@ -56,8 +56,17 @@ def update_github_secrets() -> bool:
                 logger.info(f"create secret for organization {organization}")
                 create_secret(github_organization, organization)
         except github.GithubException:
-            # fake it til you make it
-            github_organization = github_api.get_user(organization["name"])
+            try:
+                # fake it til you make it
+                github_organization = github_api.get_user(organization["name"])
+            except GithubException:
+                logger.error(f"failed to retrieve github user for {organization}", exc_info=True)
+                success = False
+                continue
+            except UnknownServiceaccountToken:
+                logger.error(f"failed to retrieve serviceaccount token for {organization} (user)", exc_info=True)
+                success = False
+                continue
         except UnknownServiceaccountToken:
             logger.error(f"failed to retrieve serviceaccount token for {organization}", exc_info=True)
             success = False
