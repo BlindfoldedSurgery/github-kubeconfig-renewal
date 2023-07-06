@@ -86,6 +86,13 @@ ORGANIZATIONS = [
                     "namespace": "static",
                 }
             },
+            {
+                "name": "never-have-i-ever",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "openalcoholics",
+                }
+            },
         ]
     },
     {
