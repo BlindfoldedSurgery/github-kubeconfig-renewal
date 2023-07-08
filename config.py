@@ -93,6 +93,13 @@ ORGANIZATIONS = [
                     "namespace": "openalcoholics",
                 }
             },
+            {
+                "name": "trexflanken",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "trexflanken",
+                }
+            },
         ]
     },
     {
