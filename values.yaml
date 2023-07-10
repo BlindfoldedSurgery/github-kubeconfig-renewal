@@ -3,6 +3,7 @@ namespace: mgmt
 secret:
   name: github-tokens
   tokens:
+    bjoernPetersen: __GITHUB_TOKEN_BJOERNPETERSEN__
     openAlcoholics: __GITHUB_TOKEN_OPENALCOHOLICS__
     torbenCarstens: __GITHUB_TOKEN_TORBENCARSTENS__
     preparingForExams: __GITHUB_TOKEN_PREPARINGFOREXAMS__

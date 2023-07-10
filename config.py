@@ -1,5 +1,18 @@
 ORGANIZATIONS = [
     {
+        "name": "bjoernpetersen",
+        "token_environment_variable_name": "GITHUB_TOKEN_BJOERNPETERSEN",
+        "repos": [
+            {
+                "name": "cloudflare-dyndns",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "born-cf-dyndns",
+                }
+            },
+        ]
+    },
+    {
         "name": "OpenAlcoholics",
         "token_environment_variable_name": "GITHUB_TOKEN_OPENALCOHOLICS",
         "repos": [
