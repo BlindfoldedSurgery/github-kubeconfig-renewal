@@ -113,6 +113,13 @@ ORGANIZATIONS = [
                     "namespace": "trexflanken",
                 }
             },
+            {
+                "name": "blog",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "static",
+                }
+            },
         ]
     },
     {
