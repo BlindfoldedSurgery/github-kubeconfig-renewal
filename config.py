@@ -120,6 +120,13 @@ ORGANIZATIONS = [
                     "namespace": "static",
                 }
             },
+            {
+                "name": "btd6-teams",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "default",
+                }
+            },
         ]
     },
     {
