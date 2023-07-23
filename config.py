@@ -127,6 +127,13 @@ ORGANIZATIONS = [
                     "namespace": "default",
                 }
             },
+            {
+                "name": "ingress-dashboard",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "mgmt",
+                }
+            },
         ]
     },
     {
