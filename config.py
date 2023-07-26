@@ -13,7 +13,7 @@ ORGANIZATIONS = [
         ]
     },
     {
-        "name": "OpenAlcoholics",
+        "name": "BlindfoldedSurgery",
         "token_environment_variable_name": "GITHUB_TOKEN_OPENALCOHOLICS",
         "repos": [
             {
