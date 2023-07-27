@@ -14,7 +14,7 @@ ORGANIZATIONS = [
     },
     {
         "name": "BlindfoldedSurgery",
-        "token_environment_variable_name": "GITHUB_TOKEN_OPENALCOHOLICS",
+        "token_environment_variable_name": "GITHUB_TOKEN_BLINDFOLDEDSURGERY",
         "repos": [
             {
                 "name": "postgres-operator",
@@ -56,6 +56,13 @@ ORGANIZATIONS = [
                 "serviceaccount": {
                     "name": "github",
                     "namespace": "abfahrt",
+                }
+            },
+            {
+                "name": "blindfolded.surgery",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "blindfoldedsurgery",
                 }
             },
         ],

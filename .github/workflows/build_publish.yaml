@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: sed -i -e "s/__GITHUB_TOKEN_BJOERNPETERSEN__/${{ secrets.BJOERNPETERSEN_TOKEN_GITHUB }}/g" values.yaml
-      - run: sed -i -e "s/__GITHUB_TOKEN_OPENALCOHOLICS__/${{ secrets.OPENALCOHOLICS_TOKEN_GITHUB }}/g" values.yaml
+      - run: sed -i -e "s/__GITHUB_TOKEN_BLINDFOLDEDSURGERY__/${{ secrets.BLINDFOLDEDSURGERY_TOKEN_GITHUB }}/g" values.yaml
       - run: sed -i -e "s/__GITHUB_TOKEN_TORBENCARSTENS__/${{ secrets.TORBENCARSTENS_TOKEN_GITHUB }}/g" values.yaml
       - run: sed -i -e "s/__GITHUB_TOKEN_PREPARINGFOREXAMS__/${{ secrets.PREPARINGFOREXAMS_TOKEN_GITHUB }}/g" values.yaml
       - run: sed -i -e "s/__GITHUB_TOKEN_TIMHATDIEHANDANDERMAUS__/${{ secrets.TIMHATDIEHANDANDERMAUS_TOKEN_GITHUB }}/g" values.yaml
