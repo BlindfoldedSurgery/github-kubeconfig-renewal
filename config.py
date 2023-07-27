@@ -65,6 +65,13 @@ ORGANIZATIONS = [
                     "namespace": "blindfoldedsurgery",
                 }
             },
+            {
+                "name": "architecture",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "blindfoldedsurgery",
+                }
+            },
         ],
     },
     {
