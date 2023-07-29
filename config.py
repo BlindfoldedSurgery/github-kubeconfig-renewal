@@ -72,6 +72,14 @@ ORGANIZATIONS = [
                     "namespace": "blindfoldedsurgery",
                 }
             },
+            {
+                "name": "ingress-dashboard",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "mgmt",
+                }
+            },
+
         ],
     },
     {
@@ -139,13 +147,6 @@ ORGANIZATIONS = [
                 "serviceaccount": {
                     "name": "github",
                     "namespace": "default",
-                }
-            },
-            {
-                "name": "ingress-dashboard",
-                "serviceaccount": {
-                    "name": "github",
-                    "namespace": "mgmt",
                 }
             },
         ]
