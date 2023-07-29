@@ -79,7 +79,13 @@ ORGANIZATIONS = [
                     "namespace": "mgmt",
                 }
             },
-
+            {
+                "name": "rbac",
+                "serviceaccount": {
+                    "name": "rbac-github",
+                    "namespace": "mgmt",
+                }
+            },
         ],
     },
     {
@@ -91,13 +97,6 @@ ORGANIZATIONS = [
                 "serviceaccount": {
                     "name": "github",
                     "namespace": "static",
-                }
-            },
-            {
-                "name": "rbac",
-                "serviceaccount": {
-                    "name": "rbac-github",
-                    "namespace": "mgmt",
                 }
             },
             {
