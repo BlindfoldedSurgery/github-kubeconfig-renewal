@@ -59,7 +59,7 @@ def update_github_secrets() -> bool:
             try:
                 # fake it til you make it
                 github_organization = github_api.get_user(organization["name"])
-            except GithubException:
+            except github.GithubException:
                 logger.error(f"failed to retrieve github user for {organization}", exc_info=True)
                 success = False
                 continue
