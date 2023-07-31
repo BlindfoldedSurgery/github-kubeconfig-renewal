@@ -15,7 +15,7 @@ except config.config_exception.ConfigException:
 api = client.CoreV1Api()
 
 
-def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, str]]:
+def find_serviceaccount_token(name: str, namespace: str) -> Dict[str, str]:
     secret_list: V1SecretList = api.list_namespaced_secret(namespace)
     for secret in secret_list.items:
         if secret.type != "kubernetes.io/service-account-token":
