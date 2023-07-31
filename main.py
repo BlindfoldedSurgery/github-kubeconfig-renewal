@@ -43,9 +43,7 @@ def update_github_secrets() -> bool:
     for organization in config.ORGANIZATIONS:
         # don't access GitHub api if not necessary
         if not organization.get("repos") and not organization.get("serviceaccount"):
-            logger.debug(
-                f"skip {organization} due to no defined/empty repos/serviceaccount key"
-            )
+            logger.debug(f"skip {organization} due to no defined/empty repos/serviceaccount key")
             continue
 
         access_token = os.getenv(organization["token_environment_variable_name"])
@@ -67,9 +65,7 @@ def update_github_secrets() -> bool:
                 # fake it til you make it
                 github_organization = github_api.get_user(organization["name"])
             except github.GithubException:
-                logger.error(
-                    f"failed to retrieve github user for {organization}", exc_info=True
-                )
+                logger.error(f"failed to retrieve github user for {organization}", exc_info=True)
                 success = False
                 continue
         except UnknownServiceaccountToken:
@@ -92,14 +88,10 @@ def update_github_secrets() -> bool:
             try:
                 create_secret(github_repo, repo)
             except github.GithubException:
-                logger.error(
-                    f"failed to create repository secret for {repo}", exc_info=True
-                )
+                logger.error(f"failed to create repository secret for {repo}", exc_info=True)
                 success = False
             except UnknownServiceaccountToken:
-                logger.error(
-                    f"failed to retrieve serviceaccount token for {repo}", exc_info=True
-                )
+                logger.error(f"failed to retrieve serviceaccount token for {repo}", exc_info=True)
                 success = False
                 continue
 
