@@ -16,15 +16,22 @@ from src import create_logger, kube, kubeconfig, UnknownServiceaccountToken
 def get_kubeconfig_for_serviceaccount(name: str, namespace: str) -> str:
     serviceaccount = kube.find_serviceaccount_token(name, namespace)
 
-    k8sconfig = kubeconfig.create(cluster_name=config.CLUSTER["name"], cluster_url=config.CLUSTER["url"],
-                                  user_name=name, user_token=serviceaccount["token"], ca_data=serviceaccount["ca.crt"])
+    k8sconfig = kubeconfig.create(
+        cluster_name=config.CLUSTER["name"],
+        cluster_url=config.CLUSTER["url"],
+        user_name=name,
+        user_token=serviceaccount["token"],
+        ca_data=serviceaccount["ca.crt"],
+    )
 
     return yaml.dump(k8sconfig)
 
 
 def create_secret(github_entity: Union[Organization, Repository], entity_config: Dict):
-    secret_value = get_kubeconfig_for_serviceaccount(entity_config["serviceaccount"]["name"],
-                                                     entity_config["serviceaccount"]["namespace"])
+    secret_value = get_kubeconfig_for_serviceaccount(
+        entity_config["serviceaccount"]["name"],
+        entity_config["serviceaccount"]["namespace"],
+    )
 
     github_entity.create_secret(config.KUBECONFIG_SECRET_NAME, secret_value)
 
@@ -36,7 +43,9 @@ def update_github_secrets() -> bool:
     for organization in config.ORGANIZATIONS:
         # don't access GitHub api if not necessary
         if not organization.get("repos") and not organization.get("serviceaccount"):
-            logger.debug(f"skip {organization} due to no defined/empty repos/serviceaccount key")
+            logger.debug(
+                f"skip {organization} due to no defined/empty repos/serviceaccount key"
+            )
             continue
 
         access_token = os.getenv(organization["token_environment_variable_name"])
@@ -58,11 +67,16 @@ def update_github_secrets() -> bool:
                 # fake it til you make it
                 github_organization = github_api.get_user(organization["name"])
             except github.GithubException:
-                logger.error(f"failed to retrieve github user for {organization}", exc_info=True)
+                logger.error(
+                    f"failed to retrieve github user for {organization}", exc_info=True
+                )
                 success = False
                 continue
         except UnknownServiceaccountToken:
-            logger.error(f"failed to retrieve serviceaccount token for {organization}", exc_info=True)
+            logger.error(
+                f"failed to retrieve serviceaccount token for {organization}",
+                exc_info=True,
+            )
             success = False
             continue
 
@@ -78,10 +92,14 @@ def update_github_secrets() -> bool:
             try:
                 create_secret(github_repo, repo)
             except github.GithubException:
-                logger.error(f"failed to create repository secret for {repo}", exc_info=True)
+                logger.error(
+                    f"failed to create repository secret for {repo}", exc_info=True
+                )
                 success = False
             except UnknownServiceaccountToken:
-                logger.error(f"failed to retrieve serviceaccount token for {repo}", exc_info=True)
+                logger.error(
+                    f"failed to retrieve serviceaccount token for {repo}", exc_info=True
+                )
                 success = False
                 continue
 

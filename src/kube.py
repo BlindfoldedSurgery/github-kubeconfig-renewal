@@ -21,11 +21,15 @@ def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, s
         if secret.type != "kubernetes.io/service-account-token":
             continue
 
-        serviceaccount_name = secret.metadata.annotations.get("kubernetes.io/service-account.name")
+        serviceaccount_name = secret.metadata.annotations.get(
+            "kubernetes.io/service-account.name"
+        )
         if serviceaccount_name == name:
             break
     else:
-        raise UnknownServiceaccountToken(f"couldn't find secret for serviceaccount `{name}` in `{namespace}`")
+        raise UnknownServiceaccountToken(
+            f"couldn't find secret for serviceaccount `{name}` in `{namespace}`"
+        )
 
     return get_serviceaccount_info_from_secret(secret)
 
