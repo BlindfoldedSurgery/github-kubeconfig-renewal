@@ -82,6 +82,8 @@ def create_repo_secret(github_organization: GithubEntity, repo: dict) -> bool:
         logger.error(f"failed to retrieve serviceaccount token for {repo}", exc_info=True)
         return False
 
+    return True
+
 
 def update_github_secrets() -> bool:
     logger = create_logger(inspect.currentframe().f_code.co_name)
