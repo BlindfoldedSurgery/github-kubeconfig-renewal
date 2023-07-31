@@ -1,11 +1,10 @@
 import base64
-import inspect
 from typing import Dict, Optional
 
 from kubernetes import client, config
 from kubernetes.client import V1Secret, V1SecretList
 
-from src import create_logger
+from . import UnknownServiceaccountToken
 
 try:
     config.load_incluster_config()
@@ -26,7 +25,7 @@ def find_serviceaccount_token(name: str, namespace: str) -> Optional[Dict[str, s
         if serviceaccount_name == name:
             break
     else:
-        raise ValueError(f"couldn't find secret for serviceaccount `{name}` in `{namespace}`")
+        raise UnknownServiceaccountToken(f"couldn't find secret for serviceaccount `{name}` in `{namespace}`")
 
     return get_serviceaccount_info_from_secret(secret)
 

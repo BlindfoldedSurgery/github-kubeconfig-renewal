@@ -15,8 +15,6 @@ from src import create_logger, kube, kubeconfig, UnknownServiceaccountToken
 @lru_cache()
 def get_kubeconfig_for_serviceaccount(name: str, namespace: str) -> str:
     serviceaccount = kube.find_serviceaccount_token(name, namespace)
-    if not serviceaccount:
-        raise UnknownServiceaccountToken(f"couldn't find serviceaccount-token '{name}' in '{namespace}'")
 
     k8sconfig = kubeconfig.create(cluster_name=config.CLUSTER["name"], cluster_url=config.CLUSTER["url"],
                                   user_name=name, user_token=serviceaccount["token"], ca_data=serviceaccount["ca.crt"])
