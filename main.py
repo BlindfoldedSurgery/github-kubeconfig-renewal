@@ -11,7 +11,6 @@ from github import Auth, Github, Organization, Repository
 import config
 from src import create_logger, kube, kubeconfig, UnknownServiceaccountToken
 
-
 GithubEntity = Union[Repository, Organization]
 
 
@@ -108,7 +107,7 @@ def update_github_secrets() -> bool:
             success = False
             continue
 
-        for repo in organization.get("repos", []):
+        for repo in organization["repos"]:
             if not create_repo_secret(github_organization, repo):
                 success = False
 
