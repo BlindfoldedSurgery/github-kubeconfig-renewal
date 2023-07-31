@@ -2,7 +2,7 @@ import inspect
 import os
 import sys
 from functools import lru_cache
-from typing import Dict, Union
+from typing import Dict, Union, Optional
 
 import github
 import yaml
@@ -39,7 +39,7 @@ def create_secret(github_entity: GithubEntity, entity_config: Dict):
     github_entity.create_secret(config.KUBECONFIG_SECRET_NAME, secret_value)
 
 
-def create_organization_secret(github_api, organization: dict) -> GithubEntity:
+def create_organization_secret(github_api, organization: dict) -> Optional[GithubEntity]:
     logger = create_logger(inspect.currentframe().f_code.co_name)
 
     try:
