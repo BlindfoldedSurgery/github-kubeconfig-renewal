@@ -20,8 +20,8 @@ def get_kubeconfig_for_serviceaccount(name: str, namespace: str) -> str:
         cluster_name=config.CLUSTER["name"],
         cluster_url=config.CLUSTER["url"],
         user_name=name,
-        user_token=serviceaccount["token"],
-        ca_data=serviceaccount["ca.crt"],
+        user_token=serviceaccount.token,
+        ca_data=serviceaccount.ca_certificate,
     )
 
     return yaml.dump(k8sconfig)
