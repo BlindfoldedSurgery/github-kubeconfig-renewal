@@ -12,6 +12,9 @@ import config
 from src import create_logger, kube, kubeconfig, UnknownServiceaccountToken
 
 
+GithubEntity = Union[Repository, Organization]
+
+
 @lru_cache()
 def get_kubeconfig_for_serviceaccount(name: str, namespace: str) -> str:
     serviceaccount = kube.find_serviceaccount_token(name, namespace)
@@ -27,13 +30,58 @@ def get_kubeconfig_for_serviceaccount(name: str, namespace: str) -> str:
     return yaml.dump(k8sconfig)
 
 
-def create_secret(github_entity: Union[Organization, Repository], entity_config: Dict):
+def create_secret(github_entity: GithubEntity, entity_config: Dict):
     secret_value = get_kubeconfig_for_serviceaccount(
         entity_config["serviceaccount"]["name"],
         entity_config["serviceaccount"]["namespace"],
     )
 
     github_entity.create_secret(config.KUBECONFIG_SECRET_NAME, secret_value)
+
+
+def create_organization_secret(github_api, organization: dict) -> GithubEntity:
+    logger = create_logger(inspect.currentframe().f_code.co_name)
+
+    try:
+        github_organization = github_api.get_organization(organization["name"])
+        if organization.get("serviceaccount"):
+            logger.info(f"create secret for organization {organization}")
+            create_secret(github_organization, organization)
+    except github.GithubException:
+        try:
+            # fake it til you make it
+            github_organization = github_api.get_user(organization["name"])
+        except github.GithubException:
+            logger.error(f"failed to retrieve github user for {organization}", exc_info=True)
+            return None
+    except UnknownServiceaccountToken:
+        logger.error(
+            f"failed to retrieve serviceaccount token for {organization}",
+            exc_info=True,
+        )
+        return None
+
+    return github_organization
+
+
+def create_repo_secret(github_organization: GithubEntity, repo: dict) -> bool:
+    logger = create_logger(inspect.currentframe().f_code.co_name)
+
+    try:
+        logger.info(f"create secret for repo {repo}")
+        github_repo = github_organization.get_repo(repo["name"])
+    except github.GithubException:
+        logger.error(f"couldn't retrieve repo {repo}", exc_info=True)
+        return False
+
+    try:
+        create_secret(github_repo, repo)
+    except github.GithubException:
+        logger.error(f"failed to create repository secret for {repo}", exc_info=True)
+        return False
+    except UnknownServiceaccountToken:
+        logger.error(f"failed to retrieve serviceaccount token for {repo}", exc_info=True)
+        return False
 
 
 def update_github_secrets() -> bool:
@@ -55,45 +103,14 @@ def update_github_secrets() -> bool:
         auth = Auth.Token(access_token)
         github_api = Github(auth=auth)
 
-        try:
-            github_organization = github_api.get_organization(organization["name"])
-            if organization.get("serviceaccount"):
-                logger.info(f"create secret for organization {organization}")
-                create_secret(github_organization, organization)
-        except github.GithubException:
-            try:
-                # fake it til you make it
-                github_organization = github_api.get_user(organization["name"])
-            except github.GithubException:
-                logger.error(f"failed to retrieve github user for {organization}", exc_info=True)
-                success = False
-                continue
-        except UnknownServiceaccountToken:
-            logger.error(
-                f"failed to retrieve serviceaccount token for {organization}",
-                exc_info=True,
-            )
+        github_organization = create_organization_secret(github_api, organization)
+        if not github_organization:
             success = False
             continue
 
         for repo in organization.get("repos", []):
-            try:
-                logger.info(f"create secret for repo {repo}")
-                github_repo = github_organization.get_repo(repo["name"])
-            except github.GithubException:
-                logger.error(f"couldn't retrieve repo {repo}", exc_info=True)
+            if not create_repo_secret(github_organization, repo):
                 success = False
-                continue
-
-            try:
-                create_secret(github_repo, repo)
-            except github.GithubException:
-                logger.error(f"failed to create repository secret for {repo}", exc_info=True)
-                success = False
-            except UnknownServiceaccountToken:
-                logger.error(f"failed to retrieve serviceaccount token for {repo}", exc_info=True)
-                success = False
-                continue
 
     return success
 
