@@ -86,6 +86,13 @@ ORGANIZATIONS = [
                     "namespace": "mgmt",
                 }
             },
+            {
+                "name": "bus-frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
         ],
     },
     {
@@ -351,13 +358,6 @@ ORGANIZATIONS = [
             },
             {
                 "name": "plex-library-update-notifier",
-                "serviceaccount": {
-                    "name": "github",
-                    "namespace": "timhatdiehandandermaus",
-                }
-            },
-            {
-                "name": "bus-frontend",
                 "serviceaccount": {
                     "name": "github",
                     "namespace": "timhatdiehandandermaus",
