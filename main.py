@@ -53,11 +53,11 @@ def get_github_entity(github_api: Github, entity_config: dict) -> Optional[Githu
     logger = create_logger(inspect.currentframe().f_code.co_name)
 
     try:
-        github_entity = github_api.get_organization(entity_config["name"])
+        return github_api.get_organization(entity_config["name"])
     except github.GithubException:
         try:
             # fake it til you make it
-            github_entity = github_api.get_user(entity_config["name"])
+            return github_api.get_user(entity_config["name"])
         except github.GithubException:
             logger.error(f"failed to retrieve github user for {entity_config}", exc_info=True)
             return None
@@ -67,8 +67,6 @@ def get_github_entity(github_api: Github, entity_config: dict) -> Optional[Githu
             exc_info=True,
         )
         return None
-
-    return github_entity
 
 
 def get_github_repo(entity: GithubEntity, repo: dict) -> Optional[Repository]:
