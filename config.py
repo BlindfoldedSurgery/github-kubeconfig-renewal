@@ -301,13 +301,6 @@ ORGANIZATIONS = [
                     "namespace": "pypi",
                 }
             },
-            {
-                "name": "random-station-bot",
-                "serviceaccount": {
-                    "name": "github",
-                    "namespace": "telegram-bots",
-                }
-            },
         ]
     },
     {
