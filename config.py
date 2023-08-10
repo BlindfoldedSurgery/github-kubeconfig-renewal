@@ -211,6 +211,13 @@ ORGANIZATIONS = [
                 }
             },
             {
+                "name": "telegram-vreddit-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "cancerbot",
+                }
+            },
+            {
                 "name": "random-action-bot",
                 "serviceaccount": {
                     "name": "github",
