@@ -197,6 +197,13 @@ ORGANIZATIONS = [
                 }
             },
             {
+                "name": "telegram-welcome-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "telegram-bots",
+                }
+            },
+            {
                 "name": "wheel-of-misfortune-backend",
                 "serviceaccount": {
                     "name": "github",
