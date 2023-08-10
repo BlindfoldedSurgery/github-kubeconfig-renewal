@@ -309,6 +309,13 @@ ORGANIZATIONS = [
                 }
             },
             {
+                "name": "coinflipbot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "telegram-bots",
+                }
+            },
+            {
                 "name": "k8s-pypi",
                 "serviceaccount": {
                     "name": "github",
