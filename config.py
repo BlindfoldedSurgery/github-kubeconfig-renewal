@@ -17,6 +17,20 @@ ORGANIZATIONS = [
                     "namespace": "cert-manager",
                 }
             },
+            {
+                "name": "mixology-api",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "mixology",
+                }
+            },
+            {
+                "name": "mixology-frontend",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "mixology",
+                }
+            },
         ]
     },
     {
