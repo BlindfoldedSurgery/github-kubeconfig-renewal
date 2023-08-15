@@ -447,5 +447,5 @@ KUBECONFIG_SECRET_NAME = "KUBECONFIG_RAW"
 
 CLUSTER = {
     "name": "carstens-tech",
-    "url": "https://k8s.carstens.tech:6443",
+    "url": "https://k8s.blindfolded.surgery:6443",
 }
