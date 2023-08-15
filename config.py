@@ -113,6 +113,12 @@ ORGANIZATIONS = [
                     "namespace": "default",
                 }
             },
+        ]
+    },
+    {
+        "name": "preparingforexams",
+        "token_environment_variable_name": "GITHUB_TOKEN_PREPARINGFOREXAMS",
+        "repos": [
             {
                 "name": "telegram-vreddit-bot",
                 "serviceaccount": {
@@ -120,12 +126,6 @@ ORGANIZATIONS = [
                     "namespace": "cancerbot",
                 }
             },
-        ]
-    },
-    {
-        "name": "preparingforexams",
-        "token_environment_variable_name": "GITHUB_TOKEN_PREPARINGFOREXAMS",
-        "repos": [
             {
                 "name": "telegram-horoscope-bot",
                 "serviceaccount": {
