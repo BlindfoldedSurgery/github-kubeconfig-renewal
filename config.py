@@ -113,6 +113,13 @@ ORGANIZATIONS = [
                     "namespace": "default",
                 }
             },
+            {
+                "name": "telegram-vreddit-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "cancerbot",
+                }
+            },
         ]
     },
     {
