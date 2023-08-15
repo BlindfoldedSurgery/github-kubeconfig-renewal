@@ -384,6 +384,13 @@ ORGANIZATIONS = [
                     "namespace": "timhatdiehandandermaus",
                 }
             },
+            {
+                "name": "station-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "timhatdiehandandermaus",
+                }
+            },
         ]
     },
     {
