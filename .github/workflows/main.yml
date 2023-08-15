@@ -1,0 +1,58 @@
+name: Build/Publish docker image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: sed -i -e "s#__TAG__#${GITHUB_SHA}#g" values.yaml
+      - uses: BlindfoldedSurgery/github-action-helm@v0.3.0
+        with:
+          raw_command: lint
+      - uses: BlindfoldedSurgery/github-action-helm@v0.3.0
+        with:
+          raw_command: lint --strict
+
+  build_push_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build the tagged Docker image
+        run: docker build -t ghcr.io/blindfoldedsurgery/github-kubeconfig-renewal:${GITHUB_SHA} .
+      - name: Push the tagged Docker image
+        run: docker push ghcr.io/blindfoldedsurgery/github-kubeconfig-renewal:${GITHUB_SHA}
+
+  deploy:
+    name: "Publish to k8s"
+    runs-on: ubuntu-latest
+    needs: [ lint, build_push_docker ]
+    steps:
+      - uses: actions/checkout@v3
+      - run: sed -i -e "s/__GITHUB_TOKEN_BJOERNPETERSEN__/${{ secrets.BJOERNPETERSEN_TOKEN_GITHUB }}/g" values.yaml
+      - run: sed -i -e "s/__GITHUB_TOKEN_BLINDFOLDEDSURGERY__/${{ secrets.BLINDFOLDEDSURGERY_TOKEN_GITHUB }}/g" values.yaml
+      - run: sed -i -e "s/__GITHUB_TOKEN_TORBENCARSTENS__/${{ secrets.TORBENCARSTENS_TOKEN_GITHUB }}/g" values.yaml
+      - run: sed -i -e "s/__GITHUB_TOKEN_PREPARINGFOREXAMS__/${{ secrets.PREPARINGFOREXAMS_TOKEN_GITHUB }}/g" values.yaml
+      - run: sed -i -e "s/__GITHUB_TOKEN_TIMHATDIEHANDANDERMAUS__/${{ secrets.TIMHATDIEHANDANDERMAUS_TOKEN_GITHUB }}/g" values.yaml
+      - run: sed -i -e "s/__GITHUB_TOKEN_WOOGLIFE__/${{ secrets.WOOGLIFE_TOKEN_GITHUB }}/g" values.yaml
+      - run: sed -i -e "s/__TAG__/${GITHUB_SHA}/g" values.yaml
+      - name: install helm chart
+        uses: BlindfoldedSurgery/github-action-helm@v0.3.0
+        with:
+          subcommand: upgrade
+          release_name: github-kubeconfig-renewal
+          ref: .
+          namespace: mgmt
+          install: true
+          atomic: true
+          kubeconfig: ${{ secrets.KUBECONFIG_BF_RAW }}
