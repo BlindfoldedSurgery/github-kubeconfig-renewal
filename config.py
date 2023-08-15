@@ -10,6 +10,13 @@ ORGANIZATIONS = [
                     "namespace": "born-cf-dyndns",
                 }
             },
+            {
+                "name": "k8s-clusterissuer",
+                "serviceaccount": {
+                    "name": "clusterissuer",
+                    "namespace": "cert-manager",
+                }
+            },
         ]
     },
     {
