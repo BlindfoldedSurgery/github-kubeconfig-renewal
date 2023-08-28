@@ -461,13 +461,6 @@ ORGANIZATIONS = [
                 }
             },
             {
-                "name": "vpkg-registry",
-                "serviceaccount": {
-                    "name": "github",
-                    "namespace": "wooglife",
-                }
-            },
-            {
                 "name": "graphing",
                 "serviceaccount": {
                     "name": "github",
