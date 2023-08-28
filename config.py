@@ -72,6 +72,20 @@ ORGANIZATIONS = [
                     "namespace": "timhatdiehandandermaus",
                 }
             },
+            {
+                "name": "blindfolded.surgery",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "blindfoldedsurgery",
+                }
+            },
+            {
+                "name": "song.abfahrt.io",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "abfahrt",
+                }
+            },
         ],
     },
     {
