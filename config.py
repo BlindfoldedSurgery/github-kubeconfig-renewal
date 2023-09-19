@@ -482,6 +482,13 @@ ORGANIZATIONS = [
                     "namespace": "wooglife",
                 }
             },
+            {
+                "name": "polarlight-notifier",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "wooglife",
+                }
+            },
         ]
     },
 ]
