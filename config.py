@@ -100,6 +100,13 @@ ORGANIZATIONS = [
                     "namespace": "eiersaft",
                 }
             },
+            {
+                "name": "isso",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "eiersaft",
+                }
+            },
         ],
     },
     {
