@@ -86,12 +86,18 @@ ORGANIZATIONS = [
                     "namespace": "abfahrt",
                 }
             },
-
             {
                 "name": "trexflanken.yoga",
                 "serviceaccount": {
                     "name": "github",
                     "namespace": "trexflanken",
+                }
+            },
+            {
+                "name": "eiersaft.me",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "eiersaft",
                 }
             },
         ],
