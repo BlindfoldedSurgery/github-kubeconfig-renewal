@@ -165,8 +165,8 @@ ORGANIZATIONS = [
             {
                 "name": "boxes",
                 "serviceaccount": {
-                    "name": "static",
-                    "namespace": "default",
+                    "name": "github",
+                    "namespace": "static",
                 }
             },
         ]
