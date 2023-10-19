@@ -162,6 +162,13 @@ ORGANIZATIONS = [
                     "namespace": "default",
                 }
             },
+            {
+                "name": "boxes",
+                "serviceaccount": {
+                    "name": "static",
+                    "namespace": "default",
+                }
+            },
         ]
     },
     {
