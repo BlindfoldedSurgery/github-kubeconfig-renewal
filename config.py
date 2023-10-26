@@ -343,6 +343,13 @@ ORGANIZATIONS = [
                     "namespace": "pypi",
                 }
             },
+            {
+                "name": "cure-freedom-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "telegram-bots",
+                }
+            },
         ]
     },
     {
