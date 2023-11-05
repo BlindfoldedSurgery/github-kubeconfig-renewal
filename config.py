@@ -189,6 +189,14 @@ ORGANIZATIONS = [
                     "namespace": "telegram-bots",
                 }
             },
+
+            {
+                "name": "telegram-location-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "telegram-bots",
+                }
+            },
             {
                 "name": "festival-api",
                 "serviceaccount": {
