@@ -176,6 +176,13 @@ ORGANIZATIONS = [
         "token_environment_variable_name": "GITHUB_TOKEN_PREPARINGFOREXAMS",
         "repos": [
             {
+                "name": "telegram-video-reverse-bot",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "telegram-bots",
+                }
+            },
+            {
                 "name": "telegram-vreddit-bot",
                 "serviceaccount": {
                     "name": "github",
