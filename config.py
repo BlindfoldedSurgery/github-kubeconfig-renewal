@@ -107,6 +107,13 @@ ORGANIZATIONS = [
                     "namespace": "eiersaft",
                 }
             },
+            {
+                "name": "shared-postgres",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "blindfoldedsurgery",
+                }
+            },
         ],
     },
     {
