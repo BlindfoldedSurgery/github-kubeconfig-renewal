@@ -29,7 +29,9 @@ def get_kubeconfig_for_serviceaccount(name: str, namespace: str) -> str:
     return yaml.dump(k8sconfig)
 
 
-def create_secret(github_entity: Union[Repository, Organization], entity_config: Dict) -> bool:
+def create_secret(
+    github_entity: Union[Repository, Organization], entity_config: Dict, *, retry: bool = False
+) -> bool:
     logger = create_logger(inspect.currentframe().f_code.co_name)
 
     secret_value = get_kubeconfig_for_serviceaccount(
@@ -41,6 +43,9 @@ def create_secret(github_entity: Union[Repository, Organization], entity_config:
         github_entity.create_secret(config.KUBECONFIG_SECRET_NAME, secret_value)
     except github.GithubException:
         logger.error(f"failed to retrieve github user for {entity_config}", exc_info=True)
+        if retry:
+            logger.info("try again")
+            return create_secret(github_entity, entity_config, retry=False)
         return False
     except UnknownServiceaccountToken:
         logger.error(f"failed to retrieve serviceaccount token for {entity_config}", exc_info=True)
@@ -108,7 +113,7 @@ def update_github_secrets() -> bool:
 
         if organization.get("serviceaccount"):
             logger.info(f"create secret for organization {organization}")
-            if not create_secret(github_entity, organization):
+            if not create_secret(github_entity, organization, retry=True):
                 success = False
 
         for repo in organization["repos"]:
@@ -117,7 +122,7 @@ def update_github_secrets() -> bool:
                 success = False
                 continue
 
-            if not create_secret(github_repo, repo):
+            if not create_secret(github_repo, repo, retry=True):
                 success = False
 
     return success
