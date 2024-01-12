@@ -114,6 +114,13 @@ ORGANIZATIONS = [
                     "namespace": "blindfoldedsurgery",
                 }
             },
+            {
+                "name": "delivery-rating-provider",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "delivery-ratings",
+                }
+            },
         ],
     },
     {
