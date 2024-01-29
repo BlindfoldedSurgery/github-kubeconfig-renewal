@@ -183,6 +183,13 @@ ORGANIZATIONS = [
                     "namespace": "static",
                 }
             },
+            {
+                "name": "extmd2html",
+                "serviceaccount": {
+                    "name": "github",
+                    "namespace": "static",
+                }
+            },
         ]
     },
     {
